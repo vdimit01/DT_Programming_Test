@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleQuote", "VehicleQuote\VehicleQuote.csproj", "{EA9AE0B3-5A67-413A-93DF-D27834B164DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A0AFD0EE-1980-4BC7-8A2A-E8D413C147E5} = {A0AFD0EE-1980-4BC7-8A2A-E8D413C147E5}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleQuote.Api", "VehicleQuote.Api\VehicleQuote.Api.csproj", "{A0AFD0EE-1980-4BC7-8A2A-E8D413C147E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA9AE0B3-5A67-413A-93DF-D27834B164DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA9AE0B3-5A67-413A-93DF-D27834B164DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA9AE0B3-5A67-413A-93DF-D27834B164DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA9AE0B3-5A67-413A-93DF-D27834B164DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0AFD0EE-1980-4BC7-8A2A-E8D413C147E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0AFD0EE-1980-4BC7-8A2A-E8D413C147E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0AFD0EE-1980-4BC7-8A2A-E8D413C147E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0AFD0EE-1980-4BC7-8A2A-E8D413C147E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F392FA3-D808-4791-8A7B-332D880760A3}
+	EndGlobalSection
+EndGlobal
