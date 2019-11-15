@@ -8,7 +8,8 @@
     /// Used for parsing out make and model data
     /// </summary>
     public static class MakesModels {
-  
+        public static List<Make> lstMakes { get; set; }
+        public static List<MakeModels> lstModels { get; set; }
     }
 
     [XmlType("make")]
