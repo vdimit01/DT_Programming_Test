@@ -4,5 +4,7 @@
 
 <h2>Hi</h2>
 <p>Fill things in here.</p>
-@{Html.RenderPartial("_Form");}
 
+<div class="container">
+    @{ Html.RenderAction("RenderForm"); }
+</div>

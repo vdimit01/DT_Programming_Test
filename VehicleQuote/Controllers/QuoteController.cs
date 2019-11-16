@@ -22,7 +22,11 @@
         [Route("Index")]
         [HttpGet]
         public ViewResult Index() {
+            return View();
+        }
 
+        public ActionResult RenderForm()
+        {
             string strMakes = ConfigurationManager.AppSettings["fileMakes"];
             string strModels = ConfigurationManager.AppSettings["fileModels"];
             string xmlMakes = Server.MapPath("~/App_Data/" + strMakes);
@@ -34,10 +38,10 @@
             }
             catch (Exception e)
             {
-                
-            }
-            return View(model);
 
+            }
+
+            return PartialView("_Form", model);
         }
 
         [HttpPost]
@@ -53,13 +57,25 @@
 
         public MyModel loadData(string xmlMakesPath, string xmlModelsPath)
         {
+            string strIgnoredMakes = "EEE";
+            string strIgnoredModles = "INVALID";
+            string xmlRootMakes = "makes";
+            string xmlRootModels = "modelsbymake";
+
             MyModel model = new MyModel();
             try { 
-                 MakesModels.lstMakes = XMLUtility.ToObjects<Make>(xmlMakesPath, "makes");
-                 model.lstMakes = MakesModels.lstMakes.Except(MakesModels.lstMakes.Where(a => a.id == "EEE" || a.id == null)).ToList();
+                 MakesModels.lstMakes = XMLUtility.ToObjects<Make>(xmlMakesPath, xmlRootMakes);
+                 model.lstMakes = MakesModels.lstMakes.Except(MakesModels.lstMakes.Where(a => a.id == strIgnoredMakes || a.id == null)).ToList();
 
-                 MakesModels.lstModels = XMLUtility.ToObjects<MakeModels>(xmlModelsPath, "modelsbymake");
-                 model.lstModels = MakesModels.lstModels.Except(MakesModels.lstModels.Where(a => a.id == "INVALID" || a.id == null)).ToList();
+                 MakesModels.lstModels = XMLUtility.ToObjects<MakeModels>(xmlModelsPath, xmlRootModels);
+                 model.lstModels = MakesModels.lstModels.Except(MakesModels.lstModels.Where(a => a.id == strIgnoredModles || a.id == null)).ToList();
+                
+                 foreach (MakeModels item in model.lstModels)
+                 {
+                    item.Models = item.Models.Where(a => a.id != null).ToList();
+                 }
+                
+                
             }
             catch (Exception ex)
             {
