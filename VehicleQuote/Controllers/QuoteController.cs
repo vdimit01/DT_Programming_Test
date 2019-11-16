@@ -38,7 +38,7 @@
             }
             catch (Exception e)
             {
-
+                return View("Error");
             }
 
             return PartialView("_Form", model);
@@ -74,7 +74,6 @@
                  {
                     item.Models = item.Models.Where(a => a.id != null).ToList();
                  }
-                
                 
             }
             catch (Exception ex)
