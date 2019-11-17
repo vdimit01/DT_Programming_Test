@@ -29,12 +29,14 @@
         {
             string strMakes = ConfigurationManager.AppSettings["fileMakes"];
             string strModels = ConfigurationManager.AppSettings["fileModels"];
-            string xmlMakes = Server.MapPath("~/App_Data/" + strMakes);
-            string xmlModels = Server.MapPath("~/App_Data/" + strModels);
+            string xmlMakesPath = Server.MapPath("~/App_Data/" + strMakes);
+            string xmlModelsPath = Server.MapPath("~/App_Data/" + strModels);
             MyModel model = new MyModel();
             try
             {
-                model = loadData(xmlMakes, xmlModels);
+                model.lstMakes = MakesModels.getMakes(xmlMakesPath);
+                model.lstModels = MakesModels.getMakeModels(xmlModelsPath);
+
             }
             catch (Exception e)
             {
@@ -55,34 +57,7 @@
             return PartialView("_ThankYou");
         }
 
-        public MyModel loadData(string xmlMakesPath, string xmlModelsPath)
-        {
-            string strIgnoredMakes = "EEE";
-            string strIgnoredModles = "INVALID";
-            string xmlRootMakes = "makes";
-            string xmlRootModels = "modelsbymake";
-
-            MyModel model = new MyModel();
-            try { 
-                 MakesModels.lstMakes = XMLUtility.ToObjects<Make>(xmlMakesPath, xmlRootMakes);
-                 model.lstMakes = MakesModels.lstMakes.Except(MakesModels.lstMakes.Where(a => a.id == strIgnoredMakes || a.id == null)).ToList();
-
-                 MakesModels.lstModels = XMLUtility.ToObjects<MakeModels>(xmlModelsPath, xmlRootModels);
-                 model.lstModels = MakesModels.lstModels.Except(MakesModels.lstModels.Where(a => a.id == strIgnoredModles || a.id == null)).ToList();
-                
-                 foreach (MakeModels item in model.lstModels)
-                 {
-                    item.Models = item.Models.Where(a => a.id != null).ToList();
-                 }
-                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return model;
-        }
+  
 
 
 
